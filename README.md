@@ -10,7 +10,7 @@
 |---|---|
 | `app.py` | 앱 본체 |
 | `requirements.txt` | 필요한 라이브러리 목록 |
-| `실행.bat` | 더블클릭 실행 (Windows) |
+| `실행.bat` | 더블클릭 실행 (Windows). `python`이 PATH에 없으면 `py` 런처로 자동 대체 |
 | `진단.bat` | 실행이 안 될 때 원인 확인 |
 | `.streamlit/secrets.toml.example` | FMP API 키 설정 예시 |
 
@@ -62,6 +62,8 @@ SEC 분기 현금흐름표는 3개월 → 6개월 → 9개월 누적으로만 �
 | `SyntaxError: (unicode error) 'utf-8' codec can't decode byte` | `app.py`를 메모장에 붙여넣어 ANSI(cp949)로 저장한 경우입니다. ZIP으로 내려받은 원본 파일을 쓰세요. |
 | `streamlit` 용어가 인식되지 않습니다 | PATH에 등록되지 않은 경우입니다. `python -m streamlit run app.py`처럼 앞에 `python -m`을 붙이세요. |
 | `ModuleNotFoundError: No module named 'altair'` | `pip install -r requirements.txt`를 실행하세요. |
+| `'python'은(는) 내부 또는 외부 명령...이 아닙니다` | PATH에 등록되지 않았습니다. `실행.bat`이 `py` 런처로 자동 대체하므로 그대로 두고 `실행.bat`을 쓰세요. |
+| `실행.bat` 창의 한글이 깨져 보임 | 배치 파일은 cp949(ANSI)로 저장해야 합니다. 이 저장소의 파일을 그대로 쓰고, 메모장에서 UTF-8로 다시 저장하지 마세요. |
 | `SSL: CERTIFICATE_VERIFY_FAILED` / self-signed certificate | 기관 네트워크나 백신이 HTTPS를 검사하는 환경입니다. `pip install truststore` 후 재실행하세요. 그래도 안 되면 사이드바 **고급 설정**에서 검증 건너뛰기. |
 | SEC 403 (요청 거부) | 사이드바에 연락처 이메일을 입력하세요. 기관 방화벽이 원인이면 종목 검색만 FMP로 자동 대체됩니다. |
 | 402 — `'limit'` must be between 0 and 5 | FMP 무료 요금제 한도입니다. "표시할 기간 수"를 5 이하로 두거나 SEC 출처를 쓰세요. |
